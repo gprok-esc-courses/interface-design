@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Page</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        h1 {
+            background-color: blue;
+        }
+    </style>
+    <script src="script.js"></script>
+    
+</head>
+<body>
+    <h1 style="background-color: brown;">My First Page</h1>
+    <p id="message" class="regular-div">Learning HTML, CSS and JavaScript</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec purus ut mi tempor consectetur. Quisque risus nunc, maximus in sem eu, consequat accumsan dui. Sed accumsan, magna non aliquam aliquam, massa metus sagittis massa, vitae ultrices lectus orci a sem. Pellentesque congue dignissim tincidunt. Donec maximus maximus mollis. Aliquam nec nibh quam. Nam scelerisque justo purus, sit amet facilisis ipsum posuere a. Sed in placerat ex, ac aliquam nulla. Proin mattis purus at lectus vehicula laoreet.</p>
+    <div class='regular-div' id='list-div'>
+        <h2>My Experiments</h2>
+        <ol>
+            <li>Experiment 1</li>
+            <li>Experiment 2</li>
+        </ol>
+    </div>
+    <div id="form-div">
+        <h2>Contact Me</h2>
+        <form onsubmit="return displayMessage()">
+            Name: <input id="name-field" type='text' /> <br>
+            Message <textarea></textarea> <br>
+            <input type="submit">
+        </form>
+    </div>
+    <div id='widgets-div'>
+        <h2>Widgets</h2>
+        <img src='https://picsum.photos/200/300' />
+    </div>
+    <div class='regular-div footer'>
+        <p>&copy; 2021</p>
+    </div>
+    
+</body>
+</html>
