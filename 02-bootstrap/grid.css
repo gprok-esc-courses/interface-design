@@ -1,0 +1,17 @@
+.my-container {
+    background-color: darksalmon;
+}
+.my-row {
+    background-color: aquamarine;
+    border: solid 1px black;
+    margin-top: 0.8em;
+}
+.my-col {
+    border: dotted 1px blue;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background-color: dimgray;
+}
+h1 {
+    background-color: blueviolet;
+}
