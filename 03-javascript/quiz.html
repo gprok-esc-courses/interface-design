@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Quiz</h1>
+    <div>
+        <button onclick="getQuiz()">START</button>
+    </div>
+    <div>
+        <h2 id='question'></h2>
+        <div id='ans1'></div>
+        <div id='ans2'></div>
+        <div id='ans3'></div>
+        <div id='ans4'></div>
+        <div id='score'></div>
+    </div>
+    <div id='submit-area' hidden>
+        <button onclick="nextQuestion()">Submit</button>
+    </div>
+    
+
+    <script>
+        var current = 0
+        var questions = []
+        var score = 0
+        var correct_position = 0
+
+        function getQuiz() {
+            fetch('https://opentdb.com/api.php?amount=10&type=multiple')
+            .then(response => {
+                response.json()
+                .then(data => {
+                    questions = data['results']
+                    console.log(questions)
+                    current = 0
+                    score = 0
+                    displayCurrentQuestion()
+                    document.getElementById('submit-area').hidden = false
+                })
+            })
+        }
+
+        function displayCurrentQuestion() {
+            question = questions[current]['question']
+            answers = questions[current]['incorrect_answers']
+            let r = Math.floor(Math.random() * 4)
+            correct_position = r
+            answers.splice(r, 0, questions[current]['correct_answer'])
+            console.log(answers)
+            document.getElementById('question').innerHTML = question
+            document.getElementById('ans1').innerHTML = "<input type='radio' name='ans'> " + answers[0]
+            document.getElementById('ans2').innerHTML = "<input type='radio' name='ans'> " + answers[1]
+            document.getElementById('ans3').innerHTML = "<input type='radio' name='ans'> " + answers[2]
+            document.getElementById('ans4').innerHTML = "<input type='radio' name='ans'> " + answers[3]
+            document.getElementById('score').innerHTML = "SCORE: " + score 
+        }
+
+        function nextQuestion() {
+            // Check answer 
+            let radio = document.getElementsByName('ans')
+            for(let i = 0; i < radio.length; i++) {
+                if(radio[i].checked) {
+                    console.log("Radio button selected " + i)
+                    if(i == correct_position) {
+                        // CORRECT!!!
+                        score++
+                    }
+                }
+            }
+            if(current < 9) {
+                current++
+                displayCurrentQuestion()
+            }
+            else {
+                document.getElementById('question').innerHTML = "SCORE: " + score + "/10"
+                document.getElementById('ans1').innerHTML = ""
+                document.getElementById('ans2').innerHTML = ""
+                document.getElementById('ans3').innerHTML = ""
+                document.getElementById('ans4').innerHTML = ""
+                document.getElementById('score').innerHTML = ""
+                document.getElementById('submit-area').hidden = true
+            }
+        }
+
+    </script>
+</body>
+</html>
